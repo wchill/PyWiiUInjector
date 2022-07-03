@@ -1,16 +1,12 @@
 [submodule "tool_src/wiimms-iso-tools"]
 	path = tool_src/wiimms-iso-tools
 	url = https://github.com/Wiimm/wiimms-iso-tools
-	ignore = dirty
 [submodule "tool_src/CNUS_Packer"]
 	path = tool_src/CNUS_Packer
 	url = https://github.com/NicoAICP/CNUS_Packer
-	ignore = dirty
 [submodule "tool_src/JNUSTool"]
 	path = tool_src/JNUSTool
-	url = https://github.com/wchill/JNUSTool.git
-	ignore = dirty
+	url = https://github.com/wchill/JNUSTool
 [submodule "tool_src/nfs2iso2nfs"]
 	path = tool_src/nfs2iso2nfs
-	url = https://github.com/wchill/nfs2iso2nfs.git
-	ignore = dirty
+	url = https://github.com/wchill/nfs2iso2nfs
