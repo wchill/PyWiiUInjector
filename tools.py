@@ -14,7 +14,7 @@ class Tool:
 
     @staticmethod
     def get_tooldir() -> pathlib.Path:
-        return pathlib.Path(__file__).parent / "TOOLDIR"
+        return pathlib.Path(__file__).parent / "tool_bin"
 
     @classmethod
     def get_tool(cls: Type["Tool"], path: str, tool_name: str) -> "Tool":
@@ -29,22 +29,22 @@ class Tool:
         return p
 
 
-C2W_Patcher = Tool.get_tool("C2W", "c2w_patcher.exe")
+# C2W_Patcher = Tool.get_tool("C2W", "c2w_patcher.exe")
 
-GetExtTypePatcher = Tool.get_tool("EXE", "GetExtTypePatcher.exe")
-Nfs2Iso2Nfs = Tool.get_tool("EXE", "nfs2iso2nfs.exe")
-WBFS_File = Tool.get_tool("EXE", "wbfs_file.exe")
-WiiVMC = Tool.get_tool("EXE", "wii-vmc.exe")
+# GetExtTypePatcher = Tool.get_tool("EXE", "GetExtTypePatcher")
+Nfs2Iso2Nfs = Tool.get_tool("EXE", "nfs2iso2nfs")
+# WBFS_File = Tool.get_tool("EXE", "wbfs_file")
+# WiiVMC = Tool.get_tool("EXE", "wii-vmc")
 
-Png2Tga = Tool.get_tool("IMG", "png2tgacmd.exe")
-Tga2Png = Tool.get_tool("IMG", "tga2pngcmd.exe")
+# Png2Tga = Tool.get_tool("IMG", "png2tgacmd")
+# Tga2Png = Tool.get_tool("IMG", "tga2pngcmd")
 
-JNUSTool = Tool.get_tool("JAR", "jnustool.exe")
-NUSPacker = Tool.get_tool("JAR", "nuspacker.exe")
-Wav2Btsnd = Tool.get_tool("JAR", "wav2btsnd.exe")
+JNUSTool = Tool.get_tool("JAR", "jnustool")
+NUSPacker = Tool.get_tool("JAR", "nuspacker")
+# Wav2Btsnd = Tool.get_tool("JAR", "wav2btsnd")
 
-NKit2ISO = Tool.get_tool("NKIT", "ConvertToISO.exe")
+# NKit2ISO = Tool.get_tool("NKIT", "ConvertToISO")
 
-Sox = Tool.get_tool("SOX", "sox.exe")
+# Sox = Tool.get_tool("SOX", "sox")
 
-WiimsISOTools = Tool.get_tool("WIT", "wit.exe")
+WiimsISOTools = Tool.get_tool("wit", "wit")

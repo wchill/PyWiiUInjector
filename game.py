@@ -221,20 +221,20 @@ class Title(ABC):
                     with open(banner_path, "wb") as f:
                         f.write(banner)
 
-            TgaConverter.convert(icon_path, "iconTex", build_meta_dir, width=128, height=128, bits_per_pixel=32)
-            TgaConverter.convert(banner_path, "bootTvTex", build_meta_dir, width=1280, height=720, bits_per_pixel=24)
+            TgaConverter.convert(icon_path, "iconTex.tga", build_meta_dir, width=128, height=128, bits_per_pixel=32)
+            TgaConverter.convert(banner_path, "bootTvTex.tga", build_meta_dir, width=1280, height=720, bits_per_pixel=24)
 
             # For gamepad, use existing banner if separate image not provided
             logger.info("Converting gamepad banner to TGA")
             gamepad_banner_path = os.path.join(os.path.dirname(banner_path), "bootDrcTex.png")
             shutil.copyfile(banner_path, gamepad_banner_path)
-            TgaConverter.convert(gamepad_banner_path, "bootDrcTex", build_meta_dir, width=854, height=480, bits_per_pixel=24)
+            TgaConverter.convert(gamepad_banner_path, "bootDrcTex.tga", build_meta_dir, width=854, height=480, bits_per_pixel=24)
 
             # Boot logo. Not mandatory
             # TODO: Plumb this path
             """
             logger.info("Converting boot logo to TGA")
-            TgaConverter.convert(logo_path, "bootLogoTex", build_meta_dir, width=170, height=42, bits_per_pixel=32)
+            TgaConverter.convert(logo_path, "bootLogoTex.tga", build_meta_dir, width=170, height=42, bits_per_pixel=32)
             """
 
             # Convert boot sound if provided
