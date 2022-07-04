@@ -8,7 +8,8 @@ class WiimsISOToolsWrapper:
     def extract_tickets(source_iso: str, output_folder: str) -> str:
         with tempfile.TemporaryDirectory() as tempdir_name:
             ticket_dir = os.path.join(tempdir_name, "tickets")
-            WiimsISOTools.run(["extract", source_iso, "--psel", "data", "--psel", "-update", "--files", "+tmd.bin", "--files", "+ticket.bin", "--dest", ticket_dir, "-vv1"])
+            p = WiimsISOTools.run(["extract", source_iso, "--psel", "data", "--psel", "-update", "--files", "+tmd.bin", "--files", "+ticket.bin", "--dest", ticket_dir, "-vv1"])
+            p.check_returncode()
             os.makedirs(output_folder, exist_ok=True)
             try:
                 os.replace(os.path.join(ticket_dir, "tmd.bin"), os.path.join(output_folder, "rvlt.tmd"))
@@ -21,7 +22,8 @@ class WiimsISOToolsWrapper:
     @staticmethod
     def extract_iso(source_iso: str, output_folder: str) -> str:
         os.makedirs(output_folder, exist_ok=True)
-        WiimsISOTools.run(["extract", source_iso, "--dest", output_folder, "--psel", "data,-update", "-ovv"])
+        p = WiimsISOTools.run(["extract", source_iso, "--dest", output_folder, "--psel", "data,-update", "-ovv"])
+        p.check_returncode()
         return output_folder
 
     @staticmethod
@@ -29,5 +31,6 @@ class WiimsISOToolsWrapper:
         args = ["copy", source_folder, "--dest", output_iso, "-ovv", "--links", "--iso"]
         if use_wiimmfi:
             args.append("--wiimmfi")
-        WiimsISOTools.run(args)
+        p = WiimsISOTools.run(args)
+        p.check_returncode()
         return output_iso

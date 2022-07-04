@@ -3,6 +3,9 @@
 
 tool_bin/*
 .idea
+config.json
+input/
+output/
 
 ### Linux ###
 *~

@@ -8,6 +8,7 @@ from typing import Any, List, Optional, Literal, Tuple
 
 import requests
 
+from config import Config
 from dol_copier import DolCopier
 from nfs_iso_converter import NfsIsoConverter
 from nus_downloader import NUSDownloader
@@ -271,7 +272,7 @@ class Title(ABC):
 
             # Encrypt with NUSPacker
             logger.info("Encrypting contents into installable WUP package")
-            NUSPackerWrapper.pack(temp_build_dir, output_path, NUSDownloader.WiiUCommonKey)
+            NUSPackerWrapper.pack(temp_build_dir, output_path, Config.WiiUCommonKey)
 
             return output_path
 
@@ -395,6 +396,7 @@ class GamecubeRetailTitle(Title):
         with tempfile.TemporaryDirectory(dir=temp_work_dir) as temp_dir:
             DolCopier.copy_base(temp_dir)
             main_dol_path = os.path.join(temp_dir, "sys", "main.dol")
+            dest_iso_path = os.path.join(temp_dir, "files")
             if self.force_43:
                 DolCopier.copy_dol("FIX94_nintendont_force43_autoboot.dol", main_dol_path)
             elif self.custom_forwarder:
@@ -404,9 +406,10 @@ class GamecubeRetailTitle(Title):
             else:
                 DolCopier.copy_dol("FIX94_nintendont_default_autoboot.dol", main_dol_path)
 
-            shutil.copyfile(self.iso_path, os.path.join(temp_dir, "files", "game.iso"))
+            os.makedirs(dest_iso_path, exist_ok=True)
+            shutil.copyfile(self.iso_path, os.path.join(dest_iso_path, "game.iso"))
             if self.iso_path_2:
-                shutil.copyfile(self.iso_path_2, os.path.join(temp_dir, "files", "disc2.iso"))
+                shutil.copyfile(self.iso_path_2, os.path.join(dest_iso_path, "disc2.iso"))
 
             return WiimsISOToolsWrapper.rebuild_iso(temp_dir, os.path.join(temp_work_dir, "game.iso"), False)
 

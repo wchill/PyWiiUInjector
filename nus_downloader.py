@@ -1,19 +1,18 @@
 from typing import Optional
 import os.path
-from pathlib import Path
 from tools import JNUSTool
 import concurrent.futures
 import hashlib
-from contextlib import contextmanager
 import shutil
 import tempfile
+import json
+from config import Config
 
 
 # if (WiiUCommonKeyHash == "35-AC-59-94-97-22-79-33-1D-97-09-4F-A2-FB-97-FC")
 # if (TitleKeyHash == "F9-4B-D8-8E-BB-7A-A9-38-67-E6-30-61-5F-27-1C-9F")
 class NUSDownloader:
     NUSUrl = "http://ccs.cdn.wup.shop.nintendo.net/ccs/download"
-    WiiUCommonKey = ""  # TODO: remove
 
     OSv0TitleId = "0005001010004000"
     OSv0Name = OSv0TitleId
@@ -31,7 +30,6 @@ class NUSDownloader:
     }
 
     RhythmHeavenFeverName = "Rhythm Heaven Fever [VAKE01]"
-    RhythmHeavenFeverTitleKey = ""  # TODO: remove
     RhythmHeavenFeverTitleId = "00050000101b0700"
     RhythmHeavenFeverFileList = {
         "/code/cos.xml": "42215713D951C2023F90164ED9DF900F",
@@ -51,7 +49,7 @@ class NUSDownloader:
     def write_config(cls, path: str) -> None:
         config = [
             cls.NUSUrl,
-            cls.WiiUCommonKey
+            Config.WiiUCommonKey
         ]
         with open(os.path.join(path, "config"), "w") as f:
             f.write('\n'.join(config))
@@ -118,7 +116,7 @@ class NUSDownloader:
             for name, md5_hash in cls.RhythmHeavenFeverFileList.items():
                 futures.append(
                     executor.submit(cls.download_file, cls.RhythmHeavenFeverTitleId, name, cls.RhythmHeavenFeverName,
-                                    md5_hash, cls.RhythmHeavenFeverTitleKey))
+                                    md5_hash, Config.RhythmHeavenFeverTitleKey))
 
         assert all(f.result() is not None for f in futures)
         os.unlink(os.path.join(JNUSTool.directory, "config"))
