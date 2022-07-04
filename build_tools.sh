@@ -13,7 +13,7 @@ git submodule update
 cd $TOOL_SRC/wiimms-iso-tools/project
 make -j $(nproc)
 mkdir -p $TOOL_BIN/wit
-cp $TOOL_SRC/wiimms-iso-tools/bin/* $TOOL_BIN/wit | true
+cp $TOOL_SRC/wiimms-iso-tools/project/bin/* $TOOL_BIN/wit | true
 
 # make nfs2iso2nfs
 cd $TOOL_SRC/nfs2iso2nfs
