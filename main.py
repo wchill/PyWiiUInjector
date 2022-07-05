@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 project_root = os.path.dirname(os.path.abspath(__file__))
 
-work_dir = "/var/tmp/wup_injector"
+work_dir = os.path.join(project_root, "temp")
 out_dir = os.path.join(project_root, "output")
 in_dir = os.path.join(project_root, "input")
 

@@ -22,6 +22,7 @@ class Tool:
 
     def _run(self, args: List[str], **kwargs: Any) -> subprocess.CompletedProcess:
         logger.info(f"Running {' '.join(args)}")
+        print(' '.join(args))
         p = subprocess.run(args, **kwargs, capture_output=True)
         if p.stdout:
             logger.debug(f'stdout: {p.stdout.decode("utf-8", errors="replace")}')

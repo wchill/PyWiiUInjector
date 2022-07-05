@@ -4,7 +4,7 @@
 	ignore = dirty
 [submodule "tool_src/CNUS_Packer"]
 	path = tool_src/CNUS_Packer
-	url = https://github.com/NicoAICP/CNUS_Packer
+	url = https://github.com/wchill/CNUS_Packer
 [submodule "tool_src/JNUSTool"]
 	path = tool_src/JNUSTool
 	url = https://github.com/wchill/JNUSTool

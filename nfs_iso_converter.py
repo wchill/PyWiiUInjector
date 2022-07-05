@@ -20,6 +20,7 @@ class NfsIsoConverter:
     @staticmethod
     def convert_iso_to_nfs(source_iso: str, output_path: str, flags: List[str]):
         with chdir(output_path):
-            Nfs2Iso2Nfs.run([*flags, "-iso", source_iso])
+            p = Nfs2Iso2Nfs.run([*flags, "-iso", source_iso])
+            p.check_returncode()
 
         return output_path

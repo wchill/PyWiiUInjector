@@ -180,11 +180,13 @@ class Title(ABC):
 
             logger.info("Generating app.xml")
             with open(os.path.join(build_code_dir, "app.xml"), "w") as f:
-                f.write(self.build_app_xml())
+                xml = self.build_app_xml()
+                f.write(xml)
 
             logger.info("Generating meta.xml")
             with open(os.path.join(build_meta_dir, "meta.xml"), "w") as f:
-                f.write(self.build_meta_xml(self.drcuse, self.game_name, self.game_name))
+                xml = self.build_meta_xml(self.drcuse, self.game_name, self.game_name)
+                f.write(xml)
 
             # Convert PNG to TGA
             logger.info("Converting icon/banner to TGA")

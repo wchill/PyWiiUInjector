@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
-: "${PROJECT_ROOT:="$(dirname "$(realpath "$0")")"}"
+SCRIPT_PATH="$(python3 -c 'import os, sys; print(os.path.realpath(sys.argv[1]))' "$0")"
+: "${PROJECT_ROOT:="$(dirname "$SCRIPT_PATH")"}"
 : "${TOOL_SRC:=$PROJECT_ROOT/tool_src}"
 : "${TOOL_BIN:=$PROJECT_ROOT/tool_bin}"
 : "${ARCH:="$(dpkg --print-architecture)"}"
