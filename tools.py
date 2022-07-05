@@ -22,7 +22,6 @@ class Tool:
 
     def _run(self, args: List[str], **kwargs: Any) -> subprocess.CompletedProcess:
         logger.info(f"Running {' '.join(args)}")
-        print(' '.join(args))
         p = subprocess.run(args, **kwargs, capture_output=True)
         if p.stdout:
             logger.debug(f'stdout: {p.stdout.decode("utf-8", errors="replace")}')
@@ -47,9 +46,6 @@ class JarTool(Tool):
 Nfs2Iso2Nfs = Tool.get_tool("nfs2iso2nfs", "nfs2iso2nfs")
 # WBFS_File = Tool.get_tool("EXE", "wbfs_file")
 # WiiVMC = Tool.get_tool("EXE", "wii-vmc")
-
-# Png2Tga = Tool.get_tool("IMG", "png2tgacmd")
-# Tga2Png = Tool.get_tool("IMG", "tga2pngcmd")
 
 JNUSTool = JarTool.get_tool("JNUSTool", "jnustool.jar")
 NUSPacker = Tool.get_tool("CNUS_Packer", "CNUSPACKER")
