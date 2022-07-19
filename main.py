@@ -44,6 +44,7 @@ def main(in_dirs, out_dir, work_dir, processes):
                                 titles.append(create_title(os.path.normpath(entry.path)))
 
         failed_titles = []
+        print(f"Converting {len(titles)} titles")
 
         with concurrent.futures.ProcessPoolExecutor(max_workers=processes) as executor:
             # Start the load operations and mark each future with its URL

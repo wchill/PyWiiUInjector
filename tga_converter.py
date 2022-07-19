@@ -1,5 +1,4 @@
 import os
-# from tools import Png2Tga
 from PIL import Image
 
 
